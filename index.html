@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backtest Replay PRO V2</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lightweight-charts@5.0.0/dist/lightweight-charts.standalone.production.js"></script></head>
+<body>
+<header><div class="brand">⚡ <b>BACKTEST REPLAY</b><span>PRO V2</span></div>
+<div class="actions"><label class="file">📥 Importer CSV<input id="file" type="file" accept=".csv"></label><button id="demo">Démo</button><button id="export">Exporter journal</button></div></header>
+<div class="toolbar">
+<label>Actif<select id="asset"><option>XAUUSD</option><option>EURUSD</option><option>BTCUSD</option></select></label>
+<label>Timeframe<select id="tf"><option>M1</option><option>M5</option><option>M15</option><option>M30</option><option>H1</option><option>H4</option></select></label>
+<label>Capital ($)<input id="capital" type="number" value="10000"></label>
+<label>Risque %<input id="risk" type="number" value="1" step=".1"></label>
+<label>Spread (points)<input id="spread" type="number" value="20"></label>
+<label>Commission/trade ($)<input id="commission" type="number" value="0"></label>
+<button class="primary" id="apply">Appliquer</button>
+</div>
+<div class="stats">
+<div><small>Équité</small><b id="equity">$10,000.00</b></div><div><small>Net profit</small><b id="profit">$0.00</b></div>
+<div><small>Win rate</small><b id="win">0%</b></div><div><small>Profit factor</small><b id="pf">—</b></div>
+<div><small>Net R</small><b id="r">0.00R</b></div><div><small>Max DD</small><b id="dd">$0.00</b></div>
+</div>
+<main><section class="chart card"><div class="chartbar"><b id="title">XAUUSD · M1</b><span id="date">—</span>
+<div><button id="prev">◀</button><button class="primary" id="play">▶ Replay</button><button id="next">▶</button><select id="speed"><option value="1400">0.5×</option><option value="700" selected>1×</option><option value="300">2×</option><option value="100">5×</option></select></div></div>
+<div id="chart"></div><div class="legend">Space : play/pause · ←/→ : bougie · B/S : entrée · E : fermer · Esc : annuler</div></section>
+<aside>
+<div class="card order"><h3>🎯 Trading Panel</h3><div class="market">Prix <strong id="price">—</strong></div>
+<div class="grid2"><button class="buy" id="buy">BUY</button><button class="sell" id="sell">SELL</button></div>
+<label>SL <input id="sl" type="number" step=".01"></label><label>TP <input id="tp" type="number" step=".01"></label>
+<label>Risque ($) <input id="riskMoney" type="number" value="100"></label>
+<div class="box">Lot/quantité estimée <b id="qty">—</b><br>RR prévu <b id="rr">—</b></div>
+<button id="close" class="close">Fermer au marché</button><div id="pos" class="box">Aucune position</div></div>
+<div class="card"><h3>⏱ Replay</h3><label>Départ<select id="start"></select></label><button id="random">🎲 Départ aléatoire</button>
+<div class="bar"><i id="bar"></i></div><small id="count">0 / 0</small></div>
+<div class="card"><h3>📒 Trades</h3><div id="trades">Aucun trade</div></div>
+</aside></main>
+<section class="lower"><div class="card"><h3>Courbe d'équité</h3><canvas id="curve" height="150"></canvas></div><div class="card"><h3>Analyse</h3>
+<div class="mini"><span>Gains</span><b id="grossWin">$0</b></div><div class="mini"><span>Pertes</span><b id="grossLoss">$0</b></div><div class="mini"><span>Trades</span><b id="ntrades">0</b></div><div class="mini"><span>Avg R</span><b id="avgr">0.00R</b></div>
+</div></section>
+<footer>Simulation uniquement — aucun ordre réel n'est envoyé à un broker.</footer>
+<script src="app.js"></script></body></html>
